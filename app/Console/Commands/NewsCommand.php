@@ -96,21 +96,27 @@ class NewsCommand extends Command
         }
 
         //ここから各カテゴリーごとのニュースから関連ワードを抽出し登録する
-        $newsdata = $news->where('flg', 0)->where('category_id', $category['id']);
-        $newses = $newsdata->get();
+        // $newsdata = $news->where('flg', 0)->where('category_id', $category['id']);
+        // $newses = $newsdata->get();
+        $newses = News::where('flg', 0)->where('category_id', $category->id)->get();
 
         $num3 = 0; //カテゴリーごとのワードの総数を更新
-        foreach ($newses as $news) {
-          if($news->flg == 0){
-          //   //ニュース本文に他の登録してるワードがあったら抽出し保存
+        foreach ($newses as $news2) {
+          if($news2->flg == 0){
+
+            //4/13 15:12 フラグを認識して通ってることを確認
+
+            //ニュース本文に他の登録してるワードがあったら抽出し保存
             // My_func::get_word($id, $news->content);
             //ニュースタイトルに他の登録してるワードがあったら抽出し保存
-            $ret_num = My_func::get_word_test($category['id'], $news->title);
-            $num2 += $ret_num;　
+            $ret_num = My_func::get_word_test($category->id, $news2->title);
+            $num2 += $ret_num;
             //wordを追加した分をバッチログのword追加数に使う変数に加算
             $num3 += $ret_num;
             //wordを追加した分をカテゴリーごとのワード総数に使う変数に加算
-            $news->update(['flg' => 1]);
+            // $news2->update(['flg' => 1]);
+            $news2->flg = 1;
+            $news2->save();
           }
         }
 
