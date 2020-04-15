@@ -29,6 +29,10 @@ import Word from './components/word/WordComponent.vue';
 import News_list from './components/news/ListComponent.vue';
 import News_all from './components/news/AllComponent.vue';
 import News_log from './components/news/LogComponent.vue';
+import Graph1 from './components/graph/Graph1Component.vue';
+import Graph2 from './components/graph/Graph2Component.vue';
+import Graph3 from './components/graph/Graph3Component.vue';
+
 
 
 
@@ -46,6 +50,10 @@ const routes = [
     { path: '/news_vue/1', name: 'news_list', component: News_list },
     { path: '/news_vue/2', name: 'news_all', component: News_all },
     { path: '/news_vue/4', name: 'news_log', component: News_log },
+    { path: '/home/1', name: 'graph1', component: Graph1 },
+    { path: '/home/2', name: 'graph2', component: Graph2 },
+    { path: '/home/3', name: 'graph3', component: Graph3 },
+
 
 
 

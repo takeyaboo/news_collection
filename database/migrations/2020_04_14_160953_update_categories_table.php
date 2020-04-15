@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class UpdateNewsesTable extends Migration
+class UpdateCategoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class UpdateNewsesTable extends Migration
      */
     public function up()
     {
-        Schema::table('newses', function (Blueprint $table) {
-            $table->boolean('flg')->default(0);
+        Schema::table('categories', function (Blueprint $table) {
+          $table->integer('news_store_num')->default(0);
         });
     }
 
@@ -25,7 +25,7 @@ class UpdateNewsesTable extends Migration
      */
     public function down()
     {
-        Schema::table('newses', function (Blueprint $table) {
+        Schema::table('categories', function (Blueprint $table) {
             //
         });
     }

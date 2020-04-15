@@ -109,13 +109,20 @@ class My_func
   public static function get_word_test($id, $data){
     //$id カテゴリーを登録するときに使う
 
+    //ユーザーIDを取得
+    $user = Category::where('id', $id)->first();
+    $user_id = $user->user_id;
+
     //登録キーワードをループ
-    $categories = Category::where('user_id', Auth::id())->get();
+
+    $categories = Category::where('user_id', $user_id)->get();
 
     $word_data = new Word();
 
     //対象のキーワードに関連するワードが登録されていれば取得し$words_listに格納する。
-    $words = $word_data->where('user_id', Auth::id())->where('category_id', $id)->get();
+    // $words = $word_data->where('user_id', Auth::id())->where('category_id', $id)->get();
+    $words = $word_data->where('category_id', $id)->get();
+
 
     $word_list = array();
     if(!empty($words)){
@@ -141,7 +148,7 @@ class My_func
           $word_data->create([
             'word' => $category->category_name,
             'category_id' => $id,
-            'user_id' => Auth::id(),
+            'user_id' => $user_id,
           ]);
           $num++;
         }

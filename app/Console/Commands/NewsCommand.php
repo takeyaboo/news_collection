@@ -110,6 +110,8 @@ class NewsCommand extends Command
             // My_func::get_word($id, $news->content);
             //ニュースタイトルに他の登録してるワードがあったら抽出し保存
             $ret_num = My_func::get_word_test($category->id, $news2->title);
+            // My_func::get_word_test($category->id, $news2->title);
+
             $num2 += $ret_num;
             //wordを追加した分をバッチログのword追加数に使う変数に加算
             $num3 += $ret_num;

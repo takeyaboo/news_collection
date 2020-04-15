@@ -11,4 +11,5 @@ class Word extends Model
   protected $fillable = [
       'word', 'category_id', 'user_id',
   ];
+
 }

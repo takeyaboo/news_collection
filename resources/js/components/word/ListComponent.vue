@@ -3,6 +3,8 @@
         <li v-for="data in datas">
           <a v-bind:href="/news_list/ + data.id">{{ data.category_name }}</a>
           ({{ data.rel_word_num }})
+          {{ data.test_data }}
+
           <a v-bind:href="/word/ + data.id">関連ワードを確認</a>
         </li>
     </div>

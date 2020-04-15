@@ -55,6 +55,7 @@
                               </div>
                             </li>
                             <hr>
+                            <!-- {{ $category->test_data }} -->
                             <?php $i++ ?>
                           @endforeach
                         </ul>

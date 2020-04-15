@@ -57,7 +57,7 @@ class CategoryController extends Controller
           'user_id' => $request->user_id,
         ]);
 
-        \Session::flash('message', 'Hello!');
+        \Session::flash('message', '「'.$request->category_name.'」を登録しました');
         return redirect('/category');
     }
 
