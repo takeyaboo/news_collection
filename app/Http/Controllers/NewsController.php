@@ -143,4 +143,12 @@ class NewsController extends Controller
         'category' => $category->category_name,
     ]);
   }
+
+  public function news_list_search(Request $request){
+
+    $match = $this->news->where('title', 'LIKE', "%{$request->search_word}%")->orderBy('opening_date', 'desc')->get();
+
+
+    return view('news.index', ['match' => $match, 'search_word' => $request->search_word]);
+  }
 }
