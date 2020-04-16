@@ -16,22 +16,22 @@
 
                     <ul>
                       @foreach($words as $word)
-                        <li>{{ $word->word }}</li>
-                        <p>出現回数:{{ $word->appear_num }}回</p>
+                        <li class="list-group-item">{{ $word->word }}
+                          ({{ $word->appear_num }}回)
+                        </li>
                       @endforeach
                     </ul>
 
-                    <form action="/word" method="POST">
+                    <!-- <form action="/word" method="POST">
                       {{ csrf_field() }}
                       <input type="hidden" name="category_id" value="{{ $category_id }}">
                       <input type="submit" 集計>
-                    </form>
+                    </form> -->
                 </div>
 
             </div>
         </div>
     </div>
 </div>
-<a href="/home">メニューに戻る</a>
 
 @endsection

@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ $category }}に関する最近のニュース</div>
+                <div class="card-header">{{ $category }}に関する全てのニュース</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -26,6 +26,5 @@
         </div>
     </div>
 </div>
-<a href="/home">メニューに戻る</a>
 
 @endsection

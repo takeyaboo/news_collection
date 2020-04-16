@@ -27,6 +27,7 @@ Route::group(['middleware' => 'auth'], function() {
   Route::get('/news_list/{id?}', 'NewsController@news_list');
   Route::post('/news_list', 'NewsController@news_list');
   Route::post('/news_list/store', 'NewsController@news_list_store');
+  Route::post('/news_list/search', 'NewsController@news_list_search');
   Route::get('/news_list/all/{id}', 'NewsController@news_list_all');
   Route::resource('/category', 'CategoryController');
   Route::resource('/word', 'WordController');

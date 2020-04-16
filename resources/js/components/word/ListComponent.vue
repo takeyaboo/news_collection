@@ -1,12 +1,13 @@
 <template>
     <div class="col-md-8 col-md-offset-2">
-        <li v-for="data in datas">
-          <a v-bind:href="/news_list/ + data.id">{{ data.category_name }}</a>
-          ({{ data.rel_word_num }})
-          {{ data.test_data }}
+      <b-list-group v-for="data in datas">
+        <!-- <li v-for="data in datas"> -->
+          <b-list-group-item v-bind:href="/word/ + data.id">{{ data.category_name }}
+            <b-badge variant="primary" pill>{{ data.rel_word_num }}件</b-badge>
+          </b-list-group-item>
+        <!-- </li> -->
+      </b-list-group>
 
-          <a v-bind:href="/word/ + data.id">関連ワードを確認</a>
-        </li>
     </div>
 </template>
 

@@ -1,12 +1,12 @@
 <template>
   <div class="col-md-8 col-md-offset-2">
-      <li v-for="data in datas">
-        {{ data.word }}
-        出現回数({{ data.appear_num }})
-        in {{ data.category_id }}
-        <hr>
-      </li>
-
+    <b-list-group v-for="data in datas">
+      <!-- <li v-for="data in datas"> -->
+        <b-list-group-item>{{ data.word }}
+          <b-badge variant="primary" pill>出現回数({{ data.appear_num }})</b-badge>
+          in {{ data.category_id }}
+        </b-list-group-item>
+    </b-list-group>
 
   </div>
 </template>

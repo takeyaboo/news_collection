@@ -15,12 +15,15 @@
                         </div>
                     @endif
 
-                    <form action="{{ url('/news_list')}}" method="POST">
+                    <form class="form-inline" action="{{ url('/news_list')}}" method="POST">
                     {{ csrf_field() }}
-                    <label for="keyword">検索キーワード:</label>
-                    <input type="text" id="keyword" name="keyword" value=""></p>
-                    <label for="submit">検索ボタン:</label>
-                    <input type="submit" id="submit" value="Submit!!!!"/>
+                      <div class="form-group mx-sm-3 mb-2">
+                        <!-- <label for="keyword">検索キーワード:</label> -->
+                        <input type="text" class="form-control" id="keyword" name="keyword" value="" placeholder="入力してください。">
+                        <!-- <label for="submit">検索ボタン:</label> -->
+                      </div>
+                      <input type="submit" class="btn btn-success mb-2" id="submit" value="Submit!!!!"/>
+
                   </form>
                 </div>
 

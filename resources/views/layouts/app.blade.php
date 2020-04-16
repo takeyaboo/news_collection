@@ -87,6 +87,12 @@
           @yield('content')
         </main>
 
+        <div class="text-center">
+          <button type="button" class="btn btn-primary"　onclick="location.href='/'">トップに戻る</button>
+          <button type="button" class="btn btn-primary"　onclick="history.back()">前のページに戻る</button>
+        </div>
+
+
 
 
         <script src="{{mix('js/app.js')}}"></script>

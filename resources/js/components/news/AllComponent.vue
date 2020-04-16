@@ -1,8 +1,10 @@
 <template>
     <div class="col-md-8 col-md-offset-2">
-        <li v-for="data in datas">
-          <a v-bind:href="data.link">{{ data.title }}</a>
-        </li>
+      <b-list-group v-for="data in datas" >
+        <!-- <li v-for="data in datas"> -->
+          <b-list-group-item v-bind:href="data.link">{{ data.title }}</b-list-group-item>
+        <!-- </li> -->
+      </b-list-group>
     </div>
 </template>
 
@@ -10,6 +12,8 @@
   export default {
       data() {
           return {
+              perPage: 3,
+              currentPage: 1,
               datas: {}
           }
       },

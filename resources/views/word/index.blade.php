@@ -12,10 +12,10 @@
                 <!-- <nav class="navbar navbar-toggleable-md navbar-light"> -->
                 <nav class="navbar navbar-expand-sm navbar-light">
                   <ul class="navbar-nav">
-                    <li class="nav-item pl-3"><a class="nav-link" href="/word_vue/1">お気に入りリワード別</li>
-                    <li class="nav-item pl-3"><a class="nav-link" href="/word_vue/2">ワード一覧</li>
-                    <li class="nav-item pl-3"><a class="nav-link" href="/word_vue/3">昇順</li>
-                    <li class="nav-item pl-3"><a class="nav-link" href="/word_vue/4">集計履歴</li>
+                    <li class="nav-item pl-3"><a class="nav-link" href="/word_vue/1">お気に入りリワード別<a/></li>
+                    <li class="nav-item pl-3"><a class="nav-link" href="/word_vue/2">ワード一覧<a/></li>
+                    <li class="nav-item pl-3"><a class="nav-link" href="/word_vue/3">昇順<a/></li>
+                    <li class="nav-item pl-3"><a class="nav-link" href="/word_vue/4">集計履歴<a/></li>
 
                   </ul>
                 </nav>

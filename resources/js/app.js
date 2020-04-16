@@ -20,6 +20,8 @@ window.Vue = require('vue');
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 import VueRouter from 'vue-router';
+
+
 // import Sample from './components/ExampleComponent.vue';
 import Word_list from './components/word/ListComponent.vue';
 import Word_all from './components/word/AllComponent.vue';
@@ -33,13 +35,14 @@ import Graph1 from './components/graph/Graph1Component.vue';
 import Graph2 from './components/graph/Graph2Component.vue';
 import Graph3 from './components/graph/Graph3Component.vue';
 
-
-
+import BootstrapVue from 'bootstrap-vue'
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 
 
 Vue.use(VueRouter);
-
+Vue.use(BootstrapVue)
 
 const routes = [
     // { path: '/category', name: 'sample', component: Sample },
@@ -71,6 +74,8 @@ const router = new VueRouter({
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
+
+
 
 
 const app = new Vue({

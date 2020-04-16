@@ -1,11 +1,11 @@
 <template>
     <div class="col-md-8 col-md-offset-2">
-        <li v-for="data in datas">
-          {{ data.create_num }}件
-          <br>
-          {{ data.created_at }}
-          <hr>
-        </li>
+      <b-list-group v-for="data in datas">
+        <!-- <li v-for="data in datas"> -->
+          <b-list-group-item>{{ data.create_num }}件<br>
+          {{ data.created_at }}</b-list-group-item>
+        <!-- </li> -->
+      </b-list-group>
     </div>
 </template>
 
