@@ -11,21 +11,24 @@ use Carbon\Carbon;
 
 class TopController extends Controller
 {
-  public function index($id){
+  public function graph($id)
+  {
     $category_data = new Category();
     $news_data = new News();
     $user_id = Auth::id();
+    $category_id = Category::where('user_id', $user_id)->get(['id'])->toArray();
 
     if($id == 1){
       $category = $category_data->where('user_id', $user_id)->orderBy('news_store_num', 'DESC')->take(6)->get();
     }elseif($id == 2){
       //一括保存コード（開発用）
-      // // $news_num = array();
+      // $news_num = array();
       // $categories = $category_data->where('user_id', $user_id)->get();
       // foreach ($categories as $category) {
-      //   $news_num = $news->where('category_id', $category->id)->count();
+      //   $news_num = $news_data->where('category_id', $category->id)->count();
       //   $category->news_store_num = $news_num;
       //   $category->save();
+      // }
 
       $category = $category_data->where('user_id', $user_id)->orderBy('rel_word_num', 'DESC')->take(6)->get();
 
@@ -34,6 +37,7 @@ class TopController extends Controller
       $category = \DB::table('newses')
       ->select(\DB::raw('count(*) as news_count, category_id'))
       ->whereDate('created_at', '=', Carbon::today())
+      ->whereIn('category_id', $category_id)
       ->groupBy('category_id')
       ->orderBy('news_count', 'DESC')
       ->take(6)

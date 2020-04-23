@@ -3,6 +3,7 @@
 
 
 @section('content')
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -21,7 +22,7 @@
 
 
 
-                    @if(!empty($news_num))
+
 
                       <form class="form-inline" action="" method="POST">
                         {{ csrf_field() }}
@@ -32,8 +33,8 @@
                         <input type="submit" class="btn btn-success mb-2" value="登録">
                       </form>
 
-
-
+                      @if(!empty($news_num))
+                      
                       @if (session('message'))
                         <div class="flash_message bg-success text-center py-3 my-0">
                             {{ session('message') }}
@@ -68,5 +69,8 @@
             </div>
         </div>
     </div>
+</div>
+<div id="app">
+  <router-view></router-view>
 </div>
 @endsection

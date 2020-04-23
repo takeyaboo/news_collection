@@ -61,7 +61,9 @@
                           @endforeach
                         </ul>
                       @endif
-
+                      <div id="app">
+                        <router-view></router-view>
+                      </div>
                 </div>
 
             </div>

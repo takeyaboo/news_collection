@@ -45,7 +45,8 @@ class My_func
   //2020/04/10
   //本文から関連ワードを抽出するメソッドだが重すげてPCが爆発しそうなので
   //解決策が思いつくまで代わりに下のget_test_word使う
-  public static function get_word($id, $data){
+  public static function get_word($id, $data)
+  {
     //$id カテゴリーを登録するときに使う
 
     //登録キーワードをループ
@@ -94,7 +95,8 @@ class My_func
   }
 
   //curl使う時用
-  public static function curl_get_contents($url, $timeout = 2 ){
+  public static function curl_get_contents($url, $timeout = 2 )
+  {
     $ch = curl_init();
     curl_setopt( $ch, CURLOPT_URL, $url );
     curl_setopt( $ch, CURLOPT_HEADER, false );
@@ -106,7 +108,8 @@ class My_func
   }
 
   //タイトルから関連ワードを抽出(get_wordが解決するまでこれ使う)
-  public static function get_word_test($id, $data){
+  public static function get_word_test($id, $data)
+  {
     //$id カテゴリーを登録するときに使う
 
     //ユーザーIDを取得
@@ -157,4 +160,12 @@ class My_func
     return $num;
   }
 
+  public static function fuzzy_news_search($search_word){
+    $news = new News();
+
+    $data['match'] = $news->where('title', 'LIKE', "%{$search_word}%")->orderBy('opening_date', 'desc')->paginate(30);
+    $data['count'] = $news->where('title', 'LIKE', "%{$search_word}%")->get()->count();
+
+    return $data;
+  }
 }

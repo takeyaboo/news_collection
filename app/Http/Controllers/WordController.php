@@ -17,6 +17,20 @@ class WordController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+     private $my_func;
+     private $news;
+     private $category;
+     private $word;
+
+    public function __construct(My_func $my_func, News $news, Category $category, Word $word)
+    {
+      $this->my_func = $my_func;
+      $this->news = $news;
+      $this->category = $category;
+      $this->word = $word;
+    }
+
     public function index()
     {
 
@@ -69,8 +83,8 @@ class WordController extends Controller
      */
     public function show($id)
     {
-        $words = Word::where('category_id', $id)->orderBy('appear_num', 'desc')->get();
-        $category = Category::find($id);
+        $words = $this->word->where('category_id', $id)->orderBy('appear_num', 'desc')->get();
+        $category = $this->category->find($id);
 
         $params = [
           'words' => $words,

@@ -23,6 +23,7 @@ import VueRouter from 'vue-router';
 
 
 // import Sample from './components/ExampleComponent.vue';
+import Top from './components/Top.vue';
 import Word_list from './components/word/ListComponent.vue';
 import Word_all from './components/word/AllComponent.vue';
 import Word_log from './components/word/LogComponent.vue';
@@ -38,24 +39,29 @@ import Graph3 from './components/graph/Graph3Component.vue';
 import BootstrapVue from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
-
-
+// import VuePaginate from 'vue-paginate';
+import Loading from './components/Load';
 
 Vue.use(VueRouter);
-Vue.use(BootstrapVue)
+Vue.use(BootstrapVue);
+// Vue.use(VuePaginate);
+// Vue.component('paginate', Paginate)
+
 
 const routes = [
     // { path: '/category', name: 'sample', component: Sample },
+    { path: '/', name: 'top', component: Top },
     { path: '/word_vue/1', name: 'word_list', component: Word_list },
     { path: '/word_vue/2', name: 'word_all', component: Word_all },
-    { path: '/word_vue/3', name: 'word', component: Word },
+    // { path: '/word_vue/3', name: 'word', component: Word },
     { path: '/word_vue/4', name: 'word_log', component: Word_log },
     { path: '/news_vue/1', name: 'news_list', component: News_list },
     { path: '/news_vue/2', name: 'news_all', component: News_all },
     { path: '/news_vue/4', name: 'news_log', component: News_log },
-    { path: '/home/1', name: 'graph1', component: Graph1 },
-    { path: '/home/2', name: 'graph2', component: Graph2 },
-    { path: '/home/3', name: 'graph3', component: Graph3 },
+    { path: '/graph/1', name: 'graph1', component: Graph1 },
+    { path: '/graph/2', name: 'graph2', component: Graph2 },
+    { path: '/graph/3', name: 'graph3', component: Graph3 },
+    { path: '/*', name: 'loading', component: Loading},
 
 
 

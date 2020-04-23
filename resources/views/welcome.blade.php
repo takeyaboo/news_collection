@@ -8,17 +8,19 @@
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-
+        <!-- Scripts -->
+        <!-- <script src="{{ asset('js/app.js') }}" defer></script> -->
         <!-- Styles -->
         <style>
             html, body {
-                background-color: #fff;
+                background: #05151a;
                 color: #636b6f;
                 font-family: 'Nunito', sans-serif;
                 font-weight: 200;
                 height: 100vh;
                 margin: 0;
             }
+
 
             .full-height {
                 height: 100vh;
@@ -61,6 +63,43 @@
             .m-b-md {
                 margin-bottom: 30px;
             }
+
+            .neon{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            margin: 0;
+            padding: 0 20px;
+            font-size: 4em;
+            color: #fb8b24;
+            text-shadow: 0 0 50px #fb8b24;
+            letter-spacing: 5px;
+          }
+
+          .neon:after{
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            padding: 0 20px;
+            z-index: -1;
+            color: #fb8b24;
+            filter: blur(15px);
+          }
+
+          .neon:before{
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #fb8b24;
+            z-index: -2;
+            opacity: .3;
+            filter: blur(50px);
+          }
         </style>
     </head>
     <body>
@@ -80,21 +119,7 @@
             @endif
 
             <div class="content">
-                <div class="title m-b-md">
-                    Laravell
-                </div>
-
-
-                <div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://vapor.laravel.com">Vapor</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
+              <h1 class="neon">ニュース収集アプリ</h1>
             </div>
         </div>
     </body>

@@ -9,6 +9,7 @@
 <script>
 import Chart from './Chart';
 
+
 export default {
   components: {
     Chart,

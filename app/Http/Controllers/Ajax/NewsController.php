@@ -21,7 +21,8 @@ class NewsController extends Controller
   private $news;
 
 
-  public function index(){
+  public function index()
+  {
     return view('news.index');
   }
 
@@ -31,6 +32,7 @@ class NewsController extends Controller
     $this->word = new Word();
     $this->user_id = Auth::id();
     $this->news = new News();
+    $category_id = Category::where('user_id', $this->user_id)->get(['id'])->toArray();
 
 
     if($id == 1){
@@ -39,15 +41,16 @@ class NewsController extends Controller
     }elseif ($id == 2) {
       //ニュース一覧
       $data = \DB::table('newses')
-            ->select()
-            ->leftJoin('categories', 'newses.category_id', '=', 'categories.id')
+            // ->select()
+            // ->leftJoin('categories', 'newses.category_id', '=', 'categories.id')
+            ->whereIn('category_id', $category_id)
             ->get();
       // $data = $this->word->where('user_id', $this->user_id)->get();
     }elseif ($id == 3) {
       // 仮
     }elseif ($id == 4) {
       //集計履歴
-      $data = Batch::orderBy('created_at', 'desc')->get();
+      $data = Batch::where('user_id', $this->user_id)->orderBy('created_at', 'desc')->get();
     }
 
     // $news_num = array();

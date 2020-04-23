@@ -42,7 +42,9 @@
                         <li class="pl-5"><a href="/news_search">ニュース検索</a></li>
                         <li class="pl-5"><a href="/news">ニュース</a></li>
                         <li class="pl-5"><a href="/word">ワード</a></li>
+                        <li class="pl-5"><a href="/graph">グラフ</a></li>
                         <li class="pl-5"><a href="/category">お気に入り管理</a></li>
+                        <li class="pl-5"><a href="/setting">アカウント設定</a></li>
                       </ul>
                     @endif
 
@@ -87,11 +89,12 @@
           @yield('content')
         </main>
 
-        <div class="text-center">
-          <button type="button" class="btn btn-primary"　onclick="location.href='/'">トップに戻る</button>
-          <button type="button" class="btn btn-primary"　onclick="history.back()">前のページに戻る</button>
-        </div>
-
+        @if(!auth()->guest())
+          <div class="text-center">
+            <button type="button" class="btn btn-primary"　onclick="location.href='/'">トップに戻る</button>
+            <button type="button" class="btn btn-primary"　onclick="history.back()">前のページに戻る</button>
+          </div>
+        @endif
 
 
 

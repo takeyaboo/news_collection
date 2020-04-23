@@ -19,10 +19,10 @@
                     {{ csrf_field() }}
                       <div class="form-group mx-sm-3 mb-2">
                         <!-- <label for="keyword">検索キーワード:</label> -->
-                        <input type="text" class="form-control" id="keyword" name="keyword" value="" placeholder="入力してください。">
+                        <input type="text" class="form-control" id="keyword" name="keyword" value="" placeholder="なんでも検索できます">
                         <!-- <label for="submit">検索ボタン:</label> -->
                       </div>
-                      <input type="submit" class="btn btn-success mb-2" id="submit" value="Submit!!!!"/>
+                      <input type="submit" class="btn btn-success mb-2" id="submit" value="検索"/>
 
                   </form>
                 </div>
@@ -30,5 +30,8 @@
             </div>
         </div>
     </div>
+</div>
+<div id="app">
+  <router-view></router-view>
 </div>
 @endsection

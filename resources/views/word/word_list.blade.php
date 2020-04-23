@@ -28,7 +28,9 @@
                       <input type="submit" 集計>
                     </form> -->
                 </div>
-
+                <div id="app">
+                  <router-view></router-view>
+                </div>
             </div>
         </div>
     </div>

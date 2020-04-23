@@ -17,6 +17,7 @@ class Kernel extends ConsoleKernel
     protected $commands = [
         \App\Console\Commands\TestCommand::class,
         \App\Console\Commands\NewsCommand::class,
+        \App\Console\Commands\MailCommand::class,
     ];
 
     /**
@@ -34,6 +35,9 @@ class Kernel extends ConsoleKernel
 
         // $schedule->command('command:newscommand')->everyMinute();
         $schedule->command('command:newscommand')->hourly();
+        // $schedule->command('command:mailcommand')->everyMinute();
+        $schedule->command('command:mailcommand')->hourly()->between('10:00', '19:00');
+
 
     }
 

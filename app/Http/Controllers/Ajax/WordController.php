@@ -20,7 +20,8 @@ class WordController extends Controller
   private $word;
   private $user_id;
 
-  public function index(){
+  public function index()
+  {
     return view('word.index');
   }
 
@@ -35,14 +36,19 @@ class WordController extends Controller
       $data = $this->category_data->where('user_id', $this->user_id)->orderBy('rel_word_num', 'desc')->get();
     }elseif ($id == 2) {
       //ワード一覧
-      $data = $this->word->where('user_id', $this->user_id)->orderBy('appear_num', 'desc')->get();
+      // $data = $this->word->where('user_id', $this->user_id)->orderBy('category_id', 'asc')->orderBy('appear_num', 'desc')->get();
+      $data = \DB::table('words')
+                  ->select()
+                  ->Join('categories', 'words.category_id', '=', 'categories.id')
+                  ->where('words.user_id', $this->user_id)
+                  ->get();
 
     }elseif ($id == 3) {
       //(テスト)
       $data = $this->category_data->where('user_id', $this->user_id)->orderBy('rel_word_num', 'asc')->get();
     }elseif ($id == 4) {
       //バッチログ表示
-      $data = Batch::orderBy('created_at', 'desc')->get();
+      $data = Batch::where('user_id', $this->user_id)->orderBy('created_at', 'desc')->get();
 
 
       //下のは却下

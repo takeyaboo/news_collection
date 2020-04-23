@@ -17,7 +17,8 @@ class NewsController extends Controller
   private $category;
 
 
-  public function __construct(My_func $my_func, News $news, Category $category){
+  public function __construct(My_func $my_func, News $news, Category $category)
+  {
     $this->my_func = $my_func;
     $this->news = $news;
     $this->category = $category;
@@ -26,19 +27,21 @@ class NewsController extends Controller
 
   public function index()
   {
-    $user_id = Auth::id();
-    $categories = Category::where('user_id', $user_id)->get();
-    $news = new News();
+    // $user_id = Auth::id();
+    // $categories = Category::where('user_id', $user_id)->get();
+    // $news = new News();
+    //
+    // $news_num = array();
+    // foreach ($categories as $category) {
+    //   array_push($news_num, $news->where('category_id', $category->id)->count());
+    // }
+    // return view('news.index', [
+    //     'categories' => $categories,
+    //     'user_id'    => $user_id,
+    //     'news_num'   => $news_num,
+    // ]);
 
-    $news_num = array();
-    foreach ($categories as $category) {
-      array_push($news_num, $news->where('category_id', $category->id)->count());
-    }
-    return view('news.index', [
-        'categories' => $categories,
-        'user_id'    => $user_id,
-        'news_num'   => $news_num,
-    ]);
+    return view('news.index');
 
   }
 
@@ -47,7 +50,8 @@ class NewsController extends Controller
     return view('news.news_search');
   }
 
-  public function news_list(Request $request, $id = ""){
+  public function news_list(Request $request, $id = "")
+  {
 
     set_time_limit(90);
 
@@ -133,22 +137,29 @@ class NewsController extends Controller
     return redirect('/category');
   }
 
-  public function news_list_all($id)
+  public function news_list_all($id, $sort = "")
   {
-    $newses = $this->news->where('category_id', $id)->orderBy('opening_date', 'desc')->paginate(10);
+
+    if(empty($sort)){
+      $newses = $this->news->where('category_id', $id)->orderBy('opening_date', 'desc')->paginate(10);
+    }elseif($sort == 'asc'){
+      $newses = $this->news->where('category_id', $id)->orderBy('opening_date', 'asc')->paginate(10);
+    }elseif($sort = 'relativity'){
+      $newses = $this->news->where('category_id', $id)->orderBy('relativity', 'desc')->paginate(10);
+    }
+
     $category = $this->category->find($id);
 
     return view('news.news_list_all', [
         'newses' => $newses,
         'category' => $category->category_name,
+        'category_id' => $category->id,
     ]);
   }
 
-  public function news_list_search(Request $request){
-
-    $match = $this->news->where('title', 'LIKE', "%{$request->search_word}%")->orderBy('opening_date', 'desc')->get();
-
-
-    return view('news.index', ['match' => $match, 'search_word' => $request->search_word]);
+  public function news_list_search(Request $request)
+  {
+    $data = $this->my_func->fuzzy_news_search($request->search_word);
+    return view('news.index', ['match' => $data['match'], 'search_word' => $request->search_word, 'count' => $data['count']]);
   }
 }

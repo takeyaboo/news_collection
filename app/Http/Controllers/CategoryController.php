@@ -16,15 +16,27 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+     private $news;
+     private $category;
+     private $word;
+
+    public function __construct(News $news, Category $category, Word $word)
+    {
+       $this->news = $news;
+       $this->category = $category;
+       $this->word = $word;
+    }
+
     public function index()
     {
       $user_id = Auth::id();
-      $categories = Category::where('user_id', $user_id)->get();
-      $news = new News();
+      $categories = $this->category->where('user_id', $user_id)->get();
+      // $news = new News();
 
       $news_num = array();
       foreach ($categories as $category) {
-        array_push($news_num, $news->where('category_id', $category->id)->count());
+        array_push($news_num, $this->news->where('category_id', $category->id)->count());
       }
       return view('category.index', [
           'categories' => $categories,
@@ -51,8 +63,8 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $category = new Category();
-        $category->create([
+        // $category = new Category();
+        $this->category->create([
           'category_name' => $request->category_name,
           'user_id' => $request->user_id,
         ]);
@@ -117,19 +129,18 @@ class CategoryController extends Controller
     public function destroy($id)
     {
       //カテゴリーを削除
-      $category = Category::find($id);
+      $category = $this->category->find($id);
       $category_name = $category->category_name; //あとで使うため取得してから削除
       $category->delete();
 
       //カテゴリーに関連するニュースを削除
-      News::where('category_id', $id)->delete();
+      $this->news->where('category_id', $id)->delete();
 
       //カテゴリーに関連する関連ワードを削除
-      $word = new Word();
-      $word->where('category_id', $id)->delete();
+      $this->word->where('category_id', $id)->delete();
 
       //他のカテゴリーの関連対象からも削除
-      $word->where('word', $category_name)->delete();
+      $this->word->where('word', $category_name)->delete();
 
 
 
