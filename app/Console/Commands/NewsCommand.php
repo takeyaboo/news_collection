@@ -104,7 +104,8 @@ class NewsCommand extends Command
           // $newses = $newsdata->get();
           $newses = News::where('flg', 0)->where('category_id', $category->id)->get();
 
-          $num3 = 0; //カテゴリーごとのワードの総数を更新
+          //カテゴリーごとのワードの総数を更新
+          $num3 = 0;
           foreach ($newses as $news2) {
             if($news2->flg == 0){
 
