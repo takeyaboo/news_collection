@@ -34,17 +34,23 @@
                       </form>
 
                       @if(!empty($news_num))
-                      
+
                       @if (session('message'))
                         <div class="flash_message bg-success text-center py-3 my-0">
                             {{ session('message') }}
                         </div>
+                      @elseif(session('error_message'))
+                      <div class="flash_message bg-danger text-center py-3 my-0">
+                          {{ session('error_message') }}
+                      </div>
                       @endif
 
-                        <ul class="list-group">
+
                           <?php $i = 0; ?>
                           @foreach($categories as $category)
-                            <li class="list-group-item"><a class="btn btn-lg btn-info" href="/news_list/{{ $category->id }}">{{ $category->category_name }}</a>
+                          <ul class="list-group">
+                            <li class="list-group-item">
+                              <a class="btn btn-lg btn-info" href="/news_list/{{ $category->id }}">{{ $category->category_name }}</a>
                               <div style="display:inline" class="text-right">
                                 <form action="/category/{{ $category->id }}" method="post">
                                     @csrf
@@ -59,9 +65,11 @@
                             </li>
                             <!-- <hr> -->
                             <!-- {{ $category->test_data }} -->
+                            </ul>
                             <?php $i++ ?>
+
                           @endforeach
-                        </ul>
+
                       @endif
 
                 </div>

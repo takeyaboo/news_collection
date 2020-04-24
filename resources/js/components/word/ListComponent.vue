@@ -7,16 +7,19 @@
           </b-list-group-item>
         <!-- </li> -->
       </b-list-group>
-      <paginate
-        :page-count="getPageCount"
-        :page-range="3"
-        :margin-pages="2"
-        :click-handler="clickCallback"
-        :prev-text="'＜'"
-        :next-text="'＞'"
-        :container-class="'pagination'"
-        :page-class="'page-item'">
-      </paginate>
+      <div class="mt-5">
+        <paginate
+          :pageCount="getPageCount"
+          :containerClass="'pagination'"
+          :page-class="'page-item'"
+          :page-link-class="'page-link'"
+          :prev-class="'page-item'"
+          :prev-link-class="'page-link'"
+          :next-class="'page-item'"
+          :next-link-class="'page-link'"
+          :clickHandler="clickCallback">
+         </paginate>
+     </div>
     </div>
 </template>
 

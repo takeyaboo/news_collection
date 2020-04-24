@@ -6,6 +6,7 @@ use Auth;
 use App\Category;
 use App\News;
 use App\Word;
+use My_func;
 
 use Illuminate\Http\Request;
 
@@ -63,14 +64,65 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        // $category = new Category();
-        $this->category->create([
-          'category_name' => $request->category_name,
-          'user_id' => $request->user_id,
-        ]);
+        //登録済みだったらリダイレクト
+        if($this->category->where('category_name', $request->category_name)->where('user_id', $request->user_id)->exists()){
+          \Session::flash('error_message', '「'.$request->category_name.'」は登録済みです。');
+          return redirect('/category');
+        }else{
+          // $category = new Category();
+          $this->category->create([
+            'category_name' => $request->category_name,
+            'user_id' => $request->user_id,
+          ]);
 
-        \Session::flash('message', '「'.$request->category_name.'」を登録しました');
-        return redirect('/category');
+          //APIでニュースを取得を取得し保存するバッチ
+
+          $new_category = $this->category->where('user_id', $request->user_id)->where('category_name', $request->category_name)->first();
+          $api_data = My_func::get_news($new_category->id);
+          $data = $api_data[0];
+          $keyword = $api_data[1];
+
+          for ($i = 0; $i < count($data); $i++) {
+            $list[$i]['time'] = str_replace('T', ' ', substr($data[$i]->updated, 0, strcspn($data[$i]->updated,'.')));
+            $list[$i]['news_id'] = $data[$i]->id;
+            $list[$i]['title'] = mb_convert_encoding($data[$i]->title ,"UTF-8", "auto");
+            $url_split =  explode("=", (string)$data[$i]->link->attributes()->href);
+            $list[$i]['url'] = end($url_split);
+            $list[$i]['content'] = $data[$i]->content;
+
+
+            //ニュースを保存
+            $this->news->create([
+              'news_id' => $list[$i]['news_id'],
+              'category_id' => $new_category->id,
+              'title' => $list[$i]['title'],
+              'link' => $list[$i]['url'],
+              'opening_date' => $list[$i]['time'],
+              'content' => $list[$i]['content'],
+            ]);
+          }
+
+          $new_newses = News::where('flg', 0)->where('category_id', $new_category->id)->get();
+
+          $num = 0; //カテゴリーごとのワードの総数を更新
+          foreach ($new_newses as $new_news) {
+            if($new_news->flg == 0){
+              $ret_num = My_func::get_word_test($new_category->id, $new_news->title);
+              $num += $ret_num;
+
+              $new_news->relativity = $ret_num;
+              $new_news->flg = 1;
+              $new_news->save();
+            }
+          }
+
+          $new_category->rel_word_num += $num;
+          $new_category->news_store_num = count($data);
+          $new_category->save();
+
+          \Session::flash('message', '「'.$request->category_name.'」を登録しました。');
+          return redirect('/category');
+        }
     }
 
     /**

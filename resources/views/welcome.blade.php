@@ -119,7 +119,7 @@
             @endif
 
             <div class="content">
-              <h1 class="neon">ニュース収集アプリ</h1>
+              <h1 class="neon">ニュース収集</h1>
             </div>
         </div>
     </body>

@@ -85,6 +85,7 @@ class NewsController extends Controller
         'title' => $keyword,
         'list_gn' => $list_gn,
         'data' => $data,
+        'user_id' => Auth::id(),
     ];
 
     return view('news.news_list', $params);

@@ -31,6 +31,13 @@
                   </form> -->
 
                   <a href="/news_list/all/{{ $category_id }}">{{ $title }}に関するニュースデータを全て見る</a>
+                @else
+                  <form class="form-inline" action="/category" method="POST">
+                    {{ csrf_field() }}
+                    <input type="hidden" name="category_name" value="{{ $title }}">
+                    <input type="hidden" name="user_id" value="{{ $user_id }}">
+                    <input type="submit" class="btn btn-success mb-2" value="このキーワードをお気に入りに登録">
+                  </form>
                 @endif
               </div>
             </div>
