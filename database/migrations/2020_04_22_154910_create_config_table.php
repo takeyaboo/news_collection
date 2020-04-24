@@ -15,9 +15,10 @@ class CreateConfigTable extends Migration
     {
         Schema::create('config', function (Blueprint $table) {
             $table->increments('id');
-            $table->unique('user_id');
-            $table->string('mail_address');
+            $table->integer('user_id');
+            $table->text('mail_address');
             $table->boolean('mail_flg');
+            $table->boolean('batch_flg');
             $table->timestamps();
         });
     }
