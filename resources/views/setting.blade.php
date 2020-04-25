@@ -32,25 +32,35 @@
                               @endforeach
                           </ul>
                       @endif
-                      <div class="form-group mx-sm-3 mb-2">
-                        <label for="mail">ニュース通知メールON/OFF</label>
-                        <input type="radio" class="ml-5" name="mail" id="mail" onclick="form_show()" value="1"{{ $user_data->mail_flg ? ' checked' : '' }}>ON
-                        <input type="radio" class="ml-5" name="mail" id="mail" onclick="form_hide()" value="0"{{ $user_data->mail_flg ? '' : ' checked' }}>OFF
-                      </div>
-                      <div class="form-group mx-sm-3 mb-2" id="address_form">
-                        <label for="address">通知宛てメールアドレス</label>
-                        <input type="text" id="address" name="address" value="{{ old('address') }}">
-                        @if(!empty($user_data->mail_address))
-                        <p>登録されているアドレス:{{ $user_data->mail_address }}</p>
-                        @endif
-                      </div>
-                      <div class="form-group mx-sm-3 mb-2">
-                        <label for="batch">ニュース自動保存ON/OFF</label>
-                        <input type="radio" class="ml-5" name="batch" id="batch" value="1"{{ $user_data->batch_flg ? ' checked' : '' }}>ON
-                        <input type="radio" class="ml-5" name="batch" id="batch" value="0"{{ $user_data->batch_flg ? '' : ' checked' }}>OFF
-                      </div>
-
-                      <input type="submit" class="btn btn-success mb-2" value="登録">
+                      <!-- <div class="container"> -->
+                        <!-- <div class="row"> -->
+                          <div class="border col-12">
+                            <div class="form-group mb-2">
+                              <label for="mail">ニュース通知メールON/OFF</label>
+                              <div>
+                                <input type="radio" class="ml-5" name="mail" id="mail" onclick="form_show()" value="1"{{ $user_data->mail_flg ? ' checked' : '' }}>ON
+                                <input type="radio" class="ml-5" name="mail" id="mail" onclick="form_hide()" value="0"{{ $user_data->mail_flg ? '' : ' checked' }}>OFF
+                              </div>
+                            </div>
+                            <div class="form-group mb-2" id="address_form">
+                              <label for="address">通知宛てメールアドレス</label>
+                              <input type="text" id="address" name="address" value="{{ old('address') }}">
+                              @if(!empty($user_data->mail_address))
+                              <p>登録されているアドレス:{{ $user_data->mail_address }}</p>
+                              @endif
+                            </div>
+                          </div>
+                          <div class="border col-12 mt-2">
+                            <div class="form-group mb-2">
+                              <label for="batch">ニュース自動保存ON/OFF</label>
+                              <div>
+                                <input type="radio" class="ml-5" name="batch" id="batch" value="1"{{ $user_data->batch_flg ? ' checked' : '' }}>ON
+                                <input type="radio" class="ml-5" name="batch" id="batch" value="0"{{ $user_data->batch_flg ? '' : ' checked' }}>OFF
+                              </div>
+                          </div>
+                        </div>
+                      <!-- </div> -->
+                      <input type="submit" class="btn btn-success mt-5 mb-2" value="登録">
                     </form>
                 </div>
 
