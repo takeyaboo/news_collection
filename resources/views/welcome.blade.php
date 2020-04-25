@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>ニュース収集</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
@@ -71,7 +71,7 @@
             transform: translate(-50%,-50%);
             margin: 0;
             padding: 0 20px;
-            font-size: 4em;
+            font-size: 6em;
             color: #fb8b24;
             text-shadow: 0 0 50px #fb8b24;
             letter-spacing: 5px;
@@ -99,6 +99,22 @@
             z-index: -2;
             opacity: .3;
             filter: blur(50px);
+          }
+
+          @media screen and (min-width: 768px) and (max-width: 991px) {
+            /*　画面サイズ 768px~991pxまで適用　*/
+            .neon {
+              font-size: 5.0em;
+              width: 80%;
+            }
+          }
+
+          @media screen and (max-width: 499px) {
+            /*　画面サイズ 499pxまで適用　*/
+            .neon {
+              font-size: 2.5em;
+              width: 80%;
+            }
           }
         </style>
     </head>
