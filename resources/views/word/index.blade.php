@@ -9,12 +9,10 @@
             <div class="card">
                 <div class="card-header">お気に入り(ワード)
                 </div>
-                <!-- <nav class="navbar navbar-toggleable-md navbar-light"> -->
                 <nav class="navbar navbar-expand-sm navbar-light">
                   <ul class="navbar-nav">
                     <li class="nav-item pl-3"><a class="nav-link" href="/word_vue/1">お気に入りリワード別<a/></li>
                     <li class="nav-item pl-3"><a class="nav-link" href="/word_vue/2">ワード一覧<a/></li>
-                    <!-- <li class="nav-item pl-3"><a class="nav-link" href="/word_vue/3">昇順<a/></li> -->
                     <li class="nav-item pl-3"><a class="nav-link" href="/word_vue/4">集計履歴<a/></li>
 
                   </ul>
@@ -28,9 +26,7 @@
 
                 </div>
 
-                <div id="app">
                   <router-view></router-view>
-                </div>
             </div>
         </div>
     </div>

@@ -26,7 +26,7 @@ class NewsController extends Controller
     return view('news.index');
   }
 
-  public function news_vue($id) {
+  public function news_vue($id, $news_id = '') {
 
     $this->category_data = new Category();
     $this->word = new Word();
@@ -41,11 +41,8 @@ class NewsController extends Controller
     }elseif ($id == 2) {
       //ニュース一覧
       $data = \DB::table('newses')
-            // ->select()
-            // ->leftJoin('categories', 'newses.category_id', '=', 'categories.id')
             ->whereIn('category_id', $category_id)
             ->get();
-      // $data = $this->word->where('user_id', $this->user_id)->get();
     }elseif ($id == 3) {
       // 仮
     }elseif ($id == 4) {
@@ -53,14 +50,17 @@ class NewsController extends Controller
       $data = Batch::where('user_id', $this->user_id)->orderBy('created_at', 'desc')->get();
     }
 
-    // $news_num = array();
-    // foreach ($categories as $category) {
-    //   array_push($news_num, $news->where('category_id', $category->id)->count());
-    // }
-
-      // $categories = Category::where('user_id', Auth::id())->orderBy('created_at', 'desc')->get();
-
     return $data;
+
+  }
+
+  public function news_evaluate($news_id, $value)
+  {
+    $this->news = new News();
+    $target = $this->news->where('id', $news_id)->first();
+    $target->evaluation = $value;
+    $target->save();
+    return $value;
 
   }
 

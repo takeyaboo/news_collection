@@ -2,6 +2,7 @@
 
 
 
+
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -9,14 +10,6 @@
             <div class="card">
                 <div class="card-header">設定画面
                 </div>
-                <!-- <nav class="navbar navbar-expand-sm navbar-light">
-                  <ul class="navbar-nav">
-                    <li class="nav-item pl-3"><a class="nav-link" href="/word_vue/1">お気に入りリワード別<a/></li>
-                    <li class="nav-item pl-3"><a class="nav-link" href="/word_vue/2">ワード一覧<a/></li>
-                    <li class="nav-item pl-3"><a class="nav-link" href="/word_vue/4">集計履歴<a/></li>
-
-                  </ul>
-                </nav> -->
                 <div class="card-body">
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
@@ -32,8 +25,6 @@
                               @endforeach
                           </ul>
                       @endif
-                      <!-- <div class="container"> -->
-                        <!-- <div class="row"> -->
                           <div class="border col-12">
                             <div class="form-group mb-2">
                               <label for="mail">ニュース通知メールON/OFF</label>
@@ -59,14 +50,22 @@
                               </div>
                           </div>
                         </div>
+                        <div class="border col-12 mt-2">
+                          <div class="form-group mb-2">
+                            <label for="graph">今日登録したキーワードをグラフに反映させるか</label>
+                            <div>
+                              <input type="radio" class="ml-5" name="graph" id="graph" value="1"{{ $user_data->graph_flg ? ' checked' : '' }}>させる
+                              <input type="radio" class="ml-5" name="graph" id="graph" value="0"{{ $user_data->graph_flg ? '' : ' checked' }}>させない
+                            </div>
+                        </div>
+                      </div>
+
                       <!-- </div> -->
                       <input type="submit" class="btn btn-success mt-5 mb-2" value="登録">
                     </form>
                 </div>
 
-                <div id="app">
                   <router-view></router-view>
-                </div>
             </div>
         </div>
     </div>

@@ -30,8 +30,6 @@ class SettingController extends Controller
     if($this->config->where('user_id', $user_id)->exists()){
       //既に登録されている場合
       $user_data = $this->config->where('user_id', $user_id)->first();
-      // $mail_flg = $user_data->mail_flg;
-      // $address = $user_data->mail_address;
 
     }else{
       //初回の場合
@@ -41,8 +39,6 @@ class SettingController extends Controller
 
     $param = [
       'user_id' => $user_id,
-      // 'user_name' => $user_data,
-      // 'address' => $address,
       'user_data' => $user_data,
 
     ];
@@ -59,6 +55,7 @@ class SettingController extends Controller
       $user_data->mail_flg = $request->mail;
       $user_data->mail_address = $request->address;
       $user_data->batch_flg = $request->batch;
+      $user_data->graph_flg = $request->graph;
       $user_data->save();
     }else{
       //設定が初めての場合
@@ -67,6 +64,7 @@ class SettingController extends Controller
           'mail_flg' => $request->mail,
           'mail_address' => $request->address,
           'batch_flg' => $request->batch,
+          'graph_flg' => $request->graph,
         ]);
 
 

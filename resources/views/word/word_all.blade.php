@@ -9,7 +9,6 @@
             <div class="card">
                 <div class="card-header">お気に入り(ワード)　一覧>
                 </div>
-                <!-- <nav class="navbar navbar-toggleable-md navbar-light"> -->
                 <nav class="navbar navbar-expand-sm navbar-light">
                   <ul class="navbar-nav">
                     <li class="nav-item pl-3"><a class="nav-link" href="/category/1">保存総数順</li>
@@ -61,9 +60,7 @@
                           @endforeach
                         </ul>
                       @endif
-                      <div id="app">
                         <router-view></router-view>
-                      </div>
                 </div>
 
             </div>

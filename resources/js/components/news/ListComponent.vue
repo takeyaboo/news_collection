@@ -2,11 +2,9 @@
     <div class="col-md-8 col-md-offset-2">
       <div v-for="data in getItems">
         <b-list-group>
-        <!-- <li v-for="data in datas"> -->
           <b-list-group-item v-bind:href="/news_list/ + data.id">{{ data.category_name }}
             <b-badge variant="primary" pill>{{ data.news_store_num }}件</b-badge>
           </b-list-group-item>
-        <!-- </li> -->
         </b-list-group>
       </div>
       <div class="mt-5">
@@ -22,6 +20,7 @@
         :clickHandler="clickCallback">
        </paginate>
      </div>
+     <top_button></top_button>
     </div>
 
 </template>

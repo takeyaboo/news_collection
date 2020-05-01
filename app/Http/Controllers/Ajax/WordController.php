@@ -36,7 +36,6 @@ class WordController extends Controller
       $data = $this->category_data->where('user_id', $this->user_id)->orderBy('rel_word_num', 'desc')->get();
     }elseif ($id == 2) {
       //ワード一覧
-      // $data = $this->word->where('user_id', $this->user_id)->orderBy('category_id', 'asc')->orderBy('appear_num', 'desc')->get();
       $data = \DB::table('words')
                   ->select()
                   ->Join('categories', 'words.category_id', '=', 'categories.id')
@@ -49,11 +48,6 @@ class WordController extends Controller
     }elseif ($id == 4) {
       //バッチログ表示
       $data = Batch::where('user_id', $this->user_id)->orderBy('created_at', 'desc')->get();
-
-
-      //下のは却下
-      // $this->update_word_num();
-      // $data = $this->category_data->where('user_id', $this->user_id)->orderBy('rel_word_num', 'desc')->get();
     }
 
 

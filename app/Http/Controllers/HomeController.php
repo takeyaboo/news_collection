@@ -36,6 +36,10 @@ class HomeController extends Controller
             $col = 'relativity';
             $sort = 'DESC';
             break;
+          case 3:
+            $col = 'evaluation';
+            $sort = 'DESC';
+            break;
           default:
              $col = 'created_at';
              $sort = 'DESC';

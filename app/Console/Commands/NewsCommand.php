@@ -48,8 +48,9 @@ class NewsCommand extends Command
     {
       $news = new News();
       $batch_log = new Batch();
-
       $date = new DateTime();
+      $calc_data = My_func::deviation_calc1();
+
       $last_update_time = "";
 
       $users = Config::where('batch_flg', 1)->get();
@@ -108,26 +109,23 @@ class NewsCommand extends Command
           foreach ($newses as $news2) {
             if($news2->flg == 0){
 
-              //4/13 15:12 フラグを認識して通ってることを確認
-
               //ニュース本文に他の登録してるワードがあったら抽出し保存
               // My_func::get_word($id, $news->content);
               //ニュースタイトルに他の登録してるワードがあったら抽出し保存
               $ret_num = My_func::get_word_test($category->id, $news2->title);
-              // My_func::get_word_test($category->id, $news2->title);
 
               $num2 += $ret_num;
               //wordを追加した分をバッチログのword追加数に使う変数に加算
               $num3 += $ret_num;
               //wordを追加した分をカテゴリーごとのワード総数に使う変数に加算
-              // $news2->update(['flg' => 1]);
-              $news2->relativity = $ret_num;
+              $news2->rel_word = $ret_num;
+
+              $result = My_func::deviation_calc2($ret_num, $calc_data['avg'], $calc_data['variance']);
+              $news2->relativity = My_func::get_relativity($result);
               $news2->flg = 1;
               $news2->save();
             }
           }
-
-          // $newsdata->update(['flg' => 1]);
 
           // 対象カテゴリーの総関連ワード数に$iを加算しアップデート
           $category->rel_word_num += $num3;

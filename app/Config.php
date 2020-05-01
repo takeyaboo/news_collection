@@ -9,6 +9,6 @@ class Config extends Model
     protected $table = 'config';
 
     protected $fillable = [
-      'user_id', 'mail_address', 'mail_flg'
+      'user_id', 'mail_address', 'mail_flg', 'batch_flg', 'graph_flg',
     ];
 }

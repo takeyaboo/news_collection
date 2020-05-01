@@ -168,4 +168,53 @@ class My_func
 
     return $data;
   }
+
+  //deviation_calc2で取得した偏差値を元にオススメ度を振り分ける
+  public static function get_relativity($val)
+  {
+
+    switch($val){
+      case $val <= 60;
+        $result = 1;
+        break;
+      case $val <= 65;
+        $result = 2;
+        break;
+      case $val <= 70;
+        $result = 3;
+        break;
+      case $val <= 75;
+        $result = 4;
+        break;
+      case $val  > 80 ;
+        $result = 5;
+        break;
+      default:
+        $result = 0;
+        break;
+    }
+
+    return $result;
+  }
+
+  //平均と標準偏差を求める
+  public static function deviation_calc1()
+  {
+    $news = News::all();
+    $avg = $news->avg('rel_word');
+    $sumsq = 0;
+    foreach($news as $v){
+      $sumsq += pow(abs($v['rel_word'] - $avg), 2);
+    };
+
+    $variance = $sumsq / count($news);
+    return array('avg' => $avg, 'variance' => sqrt($variance));
+  }
+
+  //偏差値を求める
+  public static function deviation_calc2($value, $avg, $variance)
+  {
+    $score = ($value - $avg) / $variance * 10 + 50;
+    return $score;
+  }
 }
