@@ -22,15 +22,8 @@
                       @endforeach
                     </ul>
 
-                    <!-- <form action="/word" method="POST">
-                      {{ csrf_field() }}
-                      <input type="hidden" name="category_id" value="{{ $category_id }}">
-                      <input type="submit" 集計>
-                    </form> -->
                 </div>
-                <div id="app">
                   <router-view></router-view>
-                </div>
             </div>
         </div>
     </div>

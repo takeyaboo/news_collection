@@ -18,12 +18,6 @@
                         </div>
                     @endif
 
-
-
-
-
-
-
                       <form class="form-inline" action="" method="POST">
                         {{ csrf_field() }}
                         <div class="form-group mx-sm-3 mb-2">
@@ -78,7 +72,6 @@
         </div>
     </div>
 </div>
-<div id="app">
   <router-view></router-view>
-</div>
+  <top_button></top_button>
 @endsection

@@ -1,11 +1,8 @@
 <template>
     <div class="col-md-8 col-md-offset-2">
       <b-list-group v-for="data in getItems">
-        <!-- <li v-for="data in datas"> -->
         <b-list-group-item>{{ data.word_create_num }}件<br>
           {{ data.created_at }}</b-list-group-item>
-          <!-- <hr> -->
-        <!-- </li> -->
       </b-list-group>
       <div class="mt-5">
         <paginate
@@ -20,6 +17,7 @@
         :clickHandler="clickCallback">
        </paginate>
      </div>
+     <top_button></top_button>
     </div>
 </template>
 

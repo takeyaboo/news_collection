@@ -8,6 +8,7 @@ use Auth;
 use App\Category;
 use App\News;
 use Carbon\Carbon;
+use App\Config;
 
 class TopController extends Controller
 {
@@ -16,7 +17,14 @@ class TopController extends Controller
     $category_data = new Category();
     $news_data = new News();
     $user_id = Auth::id();
-    $category_id = Category::where('user_id', $user_id)->get(['id'])->toArray();
+    $user_config = Config::where('user_id', $user_id)->first();
+
+    if($user_config->graph_flg == 1){
+      $category_id = Category::where('user_id', $user_id)->get(['id'])->toArray();
+    }elseif($user_config->graph_flg == 0){
+      //今日登録したカテゴリーはグラフに反映させない
+      $category_id = Category::where('user_id', $user_id)->where('created_at', '<', Carbon::today())->get(['id'])->toArray();
+    }
 
     if($id == 1){
       $category = $category_data->where('user_id', $user_id)->orderBy('news_store_num', 'DESC')->take(6)->get();

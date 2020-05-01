@@ -21,12 +21,7 @@
                         <li class="nav-item pl-3"><a class="nav-link" href="/graph/3">今日のグラフ<a/></li>
                       </ul>
                     </nav>
-                    <div id="app">
-                      <!-- <router-link to="/">1</router-link>
-                       <router-link to="/page2">2</router-link> -->
-                      <!-- <span v-if="seen">Now you see me</span> -->
                       <router-view></router-view>
-                    </div>
 
                     <ul>
                       <!-- トップページになに表示させるか迷い中 -->

@@ -48,21 +48,8 @@ class MailCommand extends Command
     {
       $users = Config::where('mail_flg', 1)->get();
       foreach ($users as $user) {
-        //メール送信
-        // $store_news = $news->where('created_at', '>', Carbon::now()->subHour(1))->get();
-        // $store_news = $news->where('category_id', 1)->first();
-        // $data = [
-        //          'store_news' => $store_news,
-        //         ];
-
-        // $address = $user->mail_address;
-        // Mail::send('email.batch_mail', $data, function($message){
-        //     $message->to($address, 'Test')->subject('最新のニュースのお知らせ');
-        // });
         Mail::to($user->mail_address)
-            // ->send(new OrderShipped($news, Config::where('user_id', $user->user_id)->first()));
             ->send(new OrderShipped($news, $user->user_id));
-
       }
     }
 }

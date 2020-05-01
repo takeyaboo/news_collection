@@ -38,17 +38,9 @@ Route::group(['middleware' => 'auth'], function() {
   Route::get('/ajax/word/{id}', 'Ajax\WordController@word_vue');
   Route::get('/news_vue/{id}', 'Ajax\NewsController@index');
   Route::get('/ajax/news/{id}', 'Ajax\NewsController@news_vue');
+  Route::get('/ajax/news/{news_id}/{value}', 'Ajax\NewsController@news_evaluate');
   Route::get('/ajax/top/{id}', 'Ajax\TopController@graph');
   Route::get('/setting', 'SettingController@index');
   Route::post('/setting/set', 'SettingController@set');
 
-
-
-
-
 });
-
-// Route::get('/testmail', function(){
-//   Mail::to('test@example.com')->send(new TestMail);
-//   return 'メール送信完了';
-// });

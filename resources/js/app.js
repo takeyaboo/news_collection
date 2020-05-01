@@ -39,23 +39,21 @@ import Graph3 from './components/graph/Graph3Component.vue';
 import BootstrapVue from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
-// import VuePaginate from 'vue-paginate';
 import Loading from './components/Load';
 import Paginate from 'vuejs-paginate';
+import Rating from './components/rate';
+import Top_button from './components/button';
 
 Vue.use(VueRouter);
 Vue.use(BootstrapVue);
-// Vue.use(Paginate);
-// Vue.use(VuePaginate);
-Vue.component('paginate', Paginate)
+Vue.component('paginate', Paginate);
+Vue.component('top_button', Top_button);
 
 
 const routes = [
-    // { path: '/category', name: 'sample', component: Sample },
     { path: '/', name: 'top', component: Top },
     { path: '/word_vue/1', name: 'word_list', component: Word_list },
     { path: '/word_vue/2', name: 'word_all', component: Word_all },
-    // { path: '/word_vue/3', name: 'word', component: Word },
     { path: '/word_vue/4', name: 'word_log', component: Word_log },
     { path: '/news_vue/1', name: 'news_list', component: News_list },
     { path: '/news_vue/2', name: 'news_all', component: News_all },
@@ -65,15 +63,11 @@ const routes = [
     { path: '/graph/3', name: 'graph3', component: Graph3 },
     { path: '/*', name: 'loading', component: Loading},
 
-
-
-
-
 ];
 
 const router = new VueRouter({
     mode: 'history',
-    routes
+    routes,
 });
 
 
@@ -83,11 +77,15 @@ const router = new VueRouter({
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+import './hoge.js';
 
 
 
 const app = new Vue({
-    router
+    router,
+    components: {
+    Rating,
+  }
 }).$mount('#app');
 
 // console.log(app);

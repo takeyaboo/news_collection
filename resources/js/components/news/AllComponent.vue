@@ -1,12 +1,11 @@
 <template>
     <div class="col-md-8 col-md-offset-2">
       <b-list-group v-for="data in getItems" >
-        <!-- <li v-for="data in datas"> -->
-          <b-list-group-item v-bind:href="data.link">{{ data.title }}({{ data.created_at }})オススメ度:{{ data.relativity }}</b-list-group-item>
-        <!-- </li> -->
+          <b-list-group-item v-bind:href="data.link">{{ data.title }}({{ data.created_at }})<br>オススメ度
+          <star-rating item-size="10" read-only=1 @rating-selected="rating = $event" :rating="data.relativity"></star-rating>
+          </b-list-group-item>
+
       </b-list-group>
-      <!-- <vue-loading></vue-loading> -->
-      <!-- <vue-pagination></vue-pagination> -->
       <div class="mt-5">
         <paginate
         :pageCount="getPageCount"
@@ -20,17 +19,23 @@
         :clickHandler="clickCallback">
        </paginate>
      </div>
+     <top_button></top_button>
     </div>
 </template>
 
 <script>
+import {StarRating} from 'vue-rate-it';
   export default {
       data() {
           return {
               datas: [],
               parPage: 50,
               currentPage: 1,
+              rating:3,
           }
+      },
+      components: {
+        StarRating,
       },
       methods: {
         clickCallback: function (pageNum) {

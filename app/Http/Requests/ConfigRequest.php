@@ -27,6 +27,7 @@ class ConfigRequest extends FormRequest
           'mail' => 'required',
           'address' => 'required',
           'batch' => 'required',
+          'graph' => 'required',
         ];
     }
 
@@ -36,6 +37,8 @@ class ConfigRequest extends FormRequest
           'mail.required' => 'メール通知のON/OFFを選択してください。',
           'address.required'  => 'メールアドレスを入力してください。',
           'batch.required' => '自動保存のON/OFFを選択してください。',
+          'graph.required' => 'グラフ反映設定のON/OFFを選択してください。',
+
 
       ];
     }

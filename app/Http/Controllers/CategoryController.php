@@ -64,8 +64,12 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
+        //15個以上だったらリダイレクト
+        if(15 <= $this->category->where('user_id', $request->user_id)->count()){
+          \Session::flash('error_message', '15個までしか登録できません。');
+          return redirect('/category');
         //登録済みだったらリダイレクト
-        if($this->category->where('category_name', $request->category_name)->where('user_id', $request->user_id)->exists()){
+        }elseif($this->category->where('category_name', $request->category_name)->where('user_id', $request->user_id)->exists()){
           \Session::flash('error_message', '「'.$request->category_name.'」は登録済みです。');
           return redirect('/category');
         }else{
@@ -102,6 +106,7 @@ class CategoryController extends Controller
             ]);
           }
 
+          $calc_data = My_func::deviation_calc1();
           $new_newses = News::where('flg', 0)->where('category_id', $new_category->id)->get();
 
           $num = 0; //カテゴリーごとのワードの総数を更新
@@ -110,7 +115,8 @@ class CategoryController extends Controller
               $ret_num = My_func::get_word_test($new_category->id, $new_news->title);
               $num += $ret_num;
 
-              $new_news->relativity = $ret_num;
+              $result = My_func::deviation_calc2($ret_num, $calc_data['avg'], $calc_data['variance']);
+              $new_news->relativity = My_func::get_relativity($result);
               $new_news->flg = 1;
               $new_news->save();
             }

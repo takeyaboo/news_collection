@@ -20,6 +20,7 @@
                         <li class="nav-item pl-3"><a class="nav-link" href="/home">新着順<a/></li>
                         <li class="nav-item pl-3"><a class="nav-link" href="/home/1">古い順<a/></li>
                         <li class="nav-item pl-3"><a class="nav-link" href="/home/2">オススメ順<a/></li>
+                        <li class="nav-item pl-3"><a class="nav-link" href="/home/3">評価順<a/></li>
                       </ul>
                     </nav>
 
@@ -27,15 +28,21 @@
                     <ul>
                       @foreach($newses as $news)
                         <li><a href="{{ $news->link }}">{{ $news->title }}</a></li>
+
+                          <p>オススメ度
+                          <rating :rate='{{ $news->relativity }}'
+                                  :rate2='{{ $news->evaluation }}'
+                                  :news_id='{{ $news->id }}'
+                          ></rating>
                           ({{ $news->created_at }})
-                          オススメ度:{{ $news->relativity }}
+                        </p>
+
                       @endforeach
                     </ul>
                     {{ $newses->links() }}
                 </div>
-                <div id="app">
                   <router-view></router-view>
-                </div>
+                  <top_button></top_button>
             </div>
         </div>
     </div>

@@ -1,7 +1,6 @@
 <template>
   <div class="col-md-8 col-md-offset-2">
     <b-list-group v-for="data in getItems">
-      <!-- <li v-for="data in datas"> -->
         <b-list-group-item>{{ data.word }}
           <b-badge variant="primary" pill>出現回数({{ data.appear_num }})</b-badge>
            ({{ data.category_name }})
@@ -20,6 +19,7 @@
       :clickHandler="clickCallback">
      </paginate>
    </div>
+   <top_button></top_button>
   </div>
 
 </template>
