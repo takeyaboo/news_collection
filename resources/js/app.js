@@ -24,10 +24,10 @@ import VueRouter from 'vue-router';
 
 // import Sample from './components/ExampleComponent.vue';
 import Top from './components/Top.vue';
-import Word_list from './components/word/ListComponent.vue';
-import Word_all from './components/word/AllComponent.vue';
-import Word_log from './components/word/LogComponent.vue';
-import Word from './components/word/WordComponent.vue';
+// import Word_list from './components/word/ListComponent.vue';
+// import Word_all from './components/word/AllComponent.vue';
+// import Word_log from './components/word/LogComponent.vue';
+// import Word from './components/word/WordComponent.vue';
 // import Word_update from './components/word/UpdateComponent.vue';
 import News_list from './components/news/ListComponent.vue';
 import News_all from './components/news/AllComponent.vue';
@@ -42,6 +42,7 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 import Loading from './components/Load';
 import Paginate from 'vuejs-paginate';
 import Rating from './components/rate';
+import Navmenu from './components/nav';
 import Top_button from './components/button';
 
 Vue.use(VueRouter);
@@ -52,9 +53,9 @@ Vue.component('top_button', Top_button);
 
 const routes = [
     { path: '/', name: 'top', component: Top },
-    { path: '/word_vue/1', name: 'word_list', component: Word_list },
-    { path: '/word_vue/2', name: 'word_all', component: Word_all },
-    { path: '/word_vue/4', name: 'word_log', component: Word_log },
+    // { path: '/word_vue/1', name: 'word_list', component: Word_list },
+    // { path: '/word_vue/2', name: 'word_all', component: Word_all },
+    // { path: '/word_vue/4', name: 'word_log', component: Word_log },
     { path: '/news_vue/1', name: 'news_list', component: News_list },
     { path: '/news_vue/2', name: 'news_all', component: News_all },
     { path: '/news_vue/4', name: 'news_log', component: News_log },
@@ -85,6 +86,7 @@ const app = new Vue({
     router,
     components: {
     Rating,
+    Navmenu,
   }
 }).$mount('#app');
 

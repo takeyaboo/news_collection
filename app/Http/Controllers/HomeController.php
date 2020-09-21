@@ -32,10 +32,10 @@ class HomeController extends Controller
             $col = 'created_at';
             $sort = 'ASC';
             break;
-          case 2:
-            $col = 'relativity';
-            $sort = 'DESC';
-            break;
+          // case 2:
+          //   $col = 'relativity';
+          //   $sort = 'DESC';
+          //   break;
           case 3:
             $col = 'evaluation';
             $sort = 'DESC';

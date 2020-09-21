@@ -19,6 +19,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/public', 'NewsController@search');
+Route::post('/news_list_public', 'NewsController@news_list');
+
 Auth::routes();
 
 // Route::middleware('auth:api', 'throttle:60,1')->group(function () {
@@ -33,9 +36,9 @@ Route::group(['middleware' => 'auth'], function() {
   Route::post('/news_list/search', 'NewsController@news_list_search');
   Route::get('/news_list/all/{id}/{sort?}', 'NewsController@news_list_all');
   Route::resource('/category', 'CategoryController');
-  Route::resource('/word', 'WordController');
-  Route::get('/word_vue/{id}', 'Ajax\WordController@index');
-  Route::get('/ajax/word/{id}', 'Ajax\WordController@word_vue');
+  // Route::resource('/word', 'WordController');
+  // Route::get('/word_vue/{id}', 'Ajax\WordController@index');
+  // Route::get('/ajax/word/{id}', 'Ajax\WordController@word_vue');
   Route::get('/news_vue/{id}', 'Ajax\NewsController@index');
   Route::get('/ajax/news/{id}', 'Ajax\NewsController@news_vue');
   Route::get('/ajax/news/{news_id}/{value}', 'Ajax\NewsController@news_evaluate');

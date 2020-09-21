@@ -25,7 +25,11 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="/home">
+                @if(!auth()->guest())
+                  <a class="navbar-brand" href="/home">
+                @else
+                  <a class="navbar-brand" href="/public">
+                @endif
                     {{ config('app.name', 'ニュース収集') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -42,7 +46,7 @@
                         <!-- <div class="col-sm-6 col-md-2"><a href="/home">TOP</a></div> -->
                         <div class="col-6 col-lg-3"><a href="/news_search">ニュース検索</a></div>
                         <div class="col-6 col-lg-2"><a href="/news">ニュース</a></div>
-                        <div class="col-6 col-lg-2"><a href="/word">ワード</a></div>
+                        <!-- <div class="col-6 col-lg-2"><a href="/word">ワード</a></div> -->
                         <div class="col-6 col-lg-2"><a href="/graph">グラフ</a></div>
                         <div class="col-6 col-lg-3"><a href="/category">お気に入り管理</a></div>
                         <div class="col-6 col-lg-12"><a href="/setting">アカウント設定</a></div>

@@ -145,14 +145,13 @@ class NewsController extends Controller
       $newses = $this->news->where('category_id', $id)->orderBy('opening_date', 'desc')->paginate(10);
     }elseif($sort == 'asc'){
       $newses = $this->news->where('category_id', $id)->orderBy('opening_date', 'asc')->paginate(10);
-    }elseif($sort == 'relativity'){
-      $newses = $this->news->where('category_id', $id)->orderBy('relativity', 'desc')->paginate(10);
+    // }elseif($sort == 'relativity'){
+    //   $newses = $this->news->where('category_id', $id)->orderBy('relativity', 'desc')->paginate(10);
     }elseif($sort == 'evaluation'){
       $newses = $this->news->where('category_id', $id)->orderBy('evaluation', 'desc')->paginate(10);
     }
 
     $category = $this->category->find($id);
-
     return view('news.news_list_all', [
         'newses' => $newses,
         'category' => $category->category_name,

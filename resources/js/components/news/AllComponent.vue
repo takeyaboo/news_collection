@@ -1,8 +1,8 @@
 <template>
     <div class="col-md-8 col-md-offset-2">
       <b-list-group v-for="data in getItems" >
-          <b-list-group-item v-bind:href="data.link">{{ data.title }}({{ data.created_at }})<br>オススメ度
-          <star-rating item-size="10" read-only=1 @rating-selected="rating = $event" :rating="data.relativity"></star-rating>
+          <b-list-group-item v-bind:href="data.link">{{ data.title }}({{ data.created_at }})
+          <!-- <star-rating item-size="10" read-only=1 @rating-selected="rating = $event" :rating="data.relativity"></star-rating> -->
           </b-list-group-item>
 
       </b-list-group>

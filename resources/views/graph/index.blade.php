@@ -17,7 +17,7 @@
                     <nav class="navbar navbar-expand-sm navbar-light">
                       <ul class="navbar-nav">
                         <li class="nav-item pl-3"><a class="nav-link" href="/graph/1">ニュース保存数グラフ<a/></li>
-                        <li class="nav-item pl-3"><a class="nav-link" href="/graph/2">ワード保存数グラフ<a/></li>
+                        <!-- <li class="nav-item pl-3"><a class="nav-link" href="/graph/2">ワード保存数グラフ<a/></li> -->
                         <li class="nav-item pl-3"><a class="nav-link" href="/graph/3">今日のグラフ<a/></li>
                       </ul>
                     </nav>

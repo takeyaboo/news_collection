@@ -30,7 +30,7 @@
                         <li><a href="{{ $news->link }}">{{ $news->title }}</a></li>
 
                           <p>オススメ度
-                          <rating :rate='{{ $news->relativity }}'
+                          <rating 
                                   :rate2='{{ $news->evaluation }}'
                                   :news_id='{{ $news->id }}'
                           ></rating>

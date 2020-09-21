@@ -15,13 +15,23 @@
                         </div>
                     @endif
 
+                    @if(!auth()->guest())
                     <form class="form-inline" action="{{ url('/news_list')}}" method="POST">
                     {{ csrf_field() }}
                       <div class="form-group mx-sm-3 mb-2">
                         <input type="text" class="form-control" id="keyword" name="keyword" value="" placeholder="なんでも検索できます">
                       </div>
                       <input type="submit" class="btn btn-success mb-2" id="submit" value="検索"/>
+                    @endif
 
+                    @guest
+                    <form class="form-inline" action="{{ url('/news_list_public')}}" method="POST">
+                    {{ csrf_field() }}
+                      <div class="form-group mx-sm-3 mb-2">
+                        <input type="text" class="form-control" id="keyword" name="keyword" value="" placeholder="なんでも検索できます">
+                      </div>
+                      <input type="submit" class="btn btn-success mb-2" id="submit" value="検索"/>
+                    @endguest
                   </form>
                 </div>
 

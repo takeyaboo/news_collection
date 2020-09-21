@@ -50,7 +50,7 @@
                                     @csrf
                                     @method('DELETE')
                                     <p>保存件数({{ $news_num[$i] }})</p>
-                                    <p>関連ワード数({{ $category->rel_word_num }})</p>
+                                    <!-- <p>関連ワード数({{ $category->rel_word_num }})</p> -->
                                     <button type="submit" class="btn btn-danger">
                                         {{ __('Delete') }}
                                     </button>

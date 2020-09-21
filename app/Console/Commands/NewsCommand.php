@@ -103,48 +103,47 @@ class NewsCommand extends Command
           //ここから各カテゴリーごとのニュースから関連ワードを抽出し登録する
           // $newsdata = $news->where('flg', 0)->where('category_id', $category['id']);
           // $newses = $newsdata->get();
-          $newses = News::where('flg', 0)->where('category_id', $category->id)->get();
+          // $newses = News::where('flg', 0)->where('category_id', $category->id)->get();
+          //
+          // $num3 = 0; //カテゴリーごとのワードの総数を更新
+          // foreach ($newses as $news2) {
+          //   if($news2->flg == 0){
+          //
+          //     //ニュース本文に他の登録してるワードがあったら抽出し保存
+          //     // My_func::get_word($id, $news->content);
+          //     //ニュースタイトルに他の登録してるワードがあったら抽出し保存
+          //     $ret_num = My_func::get_word_test($category->id, $news2->title);
+          //
+          //     $num2 += $ret_num;
+          //     //wordを追加した分をバッチログのword追加数に使う変数に加算
+          //     $num3 += $ret_num;
+          //     //wordを追加した分をカテゴリーごとのワード総数に使う変数に加算
+          //     $news2->rel_word = $ret_num;
+          //
+          //     $result = My_func::deviation_calc2($ret_num, $calc_data['avg'], $calc_data['variance']);
+          //     $news2->relativity = My_func::get_relativity($result);
+          //     $news2->flg = 1;
+          //     $news2->save();
+          //   }
+          // }
 
-          $num3 = 0; //カテゴリーごとのワードの総数を更新
-          foreach ($newses as $news2) {
-            if($news2->flg == 0){
+          // // 対象カテゴリーの総関連ワード数に$iを加算しアップデート
+          // $category->rel_word_num += $num3;
+          // // ユーザーごとにカテゴリーのニュース保存数を更新する
+          // $news_num = $news->where('category_id', $category->id)->count();
+          // $category->news_store_num = $news_num;
+          // $category->save();
 
-              //ニュース本文に他の登録してるワードがあったら抽出し保存
-              // My_func::get_word($id, $news->content);
-              //ニュースタイトルに他の登録してるワードがあったら抽出し保存
-              $ret_num = My_func::get_word_test($category->id, $news2->title);
-
-              $num2 += $ret_num;
-              //wordを追加した分をバッチログのword追加数に使う変数に加算
-              $num3 += $ret_num;
-              //wordを追加した分をカテゴリーごとのワード総数に使う変数に加算
-              $news2->rel_word = $ret_num;
-
-              $result = My_func::deviation_calc2($ret_num, $calc_data['avg'], $calc_data['variance']);
-              $news2->relativity = My_func::get_relativity($result);
-              $news2->flg = 1;
-              $news2->save();
-            }
-          }
-
-          // 対象カテゴリーの総関連ワード数に$iを加算しアップデート
-          $category->rel_word_num += $num3;
-          // ユーザーごとにカテゴリーのニュース保存数を更新する
-          $news_num = $news->where('category_id', $category->id)->count();
-          $category->news_store_num = $news_num;
-          $category->save();
-
-        }
-
-
+        // }
 
 
         //バッチ実行時に何件ニュースを保存したかユーザーごとにログに記録
         $batch_log->create([
           'create_num' => $num,
-          'word_create_num' => $num2,
+          // 'word_create_num' => $num2,
           'user_id' => $user->user_id,
         ]);
       }
     }
+  }
 }

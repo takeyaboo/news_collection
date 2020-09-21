@@ -20,13 +20,11 @@ class CategoryController extends Controller
 
      private $news;
      private $category;
-     private $word;
 
-    public function __construct(News $news, Category $category, Word $word)
+    public function __construct(News $news, Category $category)
     {
        $this->news = $news;
        $this->category = $category;
-       $this->word = $word;
     }
 
     public function index()
@@ -106,23 +104,23 @@ class CategoryController extends Controller
             ]);
           }
 
-          $calc_data = My_func::deviation_calc1();
-          $new_newses = News::where('flg', 0)->where('category_id', $new_category->id)->get();
+          // $calc_data = My_func::deviation_calc1();
+          // $new_newses = News::where('flg', 0)->where('category_id', $new_category->id)->get();
+          //
+          // $num = 0; //カテゴリーごとのワードの総数を更新
+          // foreach ($new_newses as $new_news) {
+          //   if($new_news->flg == 0){
+          //     $ret_num = My_func::get_word_test($new_category->id, $new_news->title);
+          //     $num += $ret_num;
+          //
+          //     $result = My_func::deviation_calc2($ret_num, $calc_data['avg'], $calc_data['variance']);
+          //     $new_news->relativity = My_func::get_relativity($result);
+          //     $new_news->flg = 1;
+          //     $new_news->save();
+          //   }
+          // }
 
-          $num = 0; //カテゴリーごとのワードの総数を更新
-          foreach ($new_newses as $new_news) {
-            if($new_news->flg == 0){
-              $ret_num = My_func::get_word_test($new_category->id, $new_news->title);
-              $num += $ret_num;
-
-              $result = My_func::deviation_calc2($ret_num, $calc_data['avg'], $calc_data['variance']);
-              $new_news->relativity = My_func::get_relativity($result);
-              $new_news->flg = 1;
-              $new_news->save();
-            }
-          }
-
-          $new_category->rel_word_num += $num;
+          // $new_category->rel_word_num += $num;
           $new_category->news_store_num = count($data);
           $new_category->save();
 
@@ -188,17 +186,17 @@ class CategoryController extends Controller
     {
       //カテゴリーを削除
       $category = $this->category->find($id);
-      $category_name = $category->category_name; //あとで使うため取得してから削除
+      // $category_name = $category->category_name; //あとで使うため取得してから削除
       $category->delete();
 
       //カテゴリーに関連するニュースを削除
       $this->news->where('category_id', $id)->delete();
 
-      //カテゴリーに関連する関連ワードを削除
-      $this->word->where('category_id', $id)->delete();
-
-      //他のカテゴリーの関連対象からも削除
-      $this->word->where('word', $category_name)->delete();
+      // //カテゴリーに関連する関連ワードを削除
+      // $this->word->where('category_id', $id)->delete();
+      //
+      // //他のカテゴリーの関連対象からも削除
+      // $this->word->where('word', $category_name)->delete();
 
 
 

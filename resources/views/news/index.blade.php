@@ -11,11 +11,14 @@
                 </div>
                 <nav class="navbar navbar-expand-sm navbar-light">
                   <ul class="navbar-nav">
-                    <li class="nav-item pl-3"><a class="nav-link" href="/news_vue/1">お気に入りリワード別<a/></li>
-                    <li class="nav-item pl-3"><a class="nav-link" href="/news_vue/2">ニュース一覧<a/></li>
-                    <li class="nav-item pl-3"><a class="nav-link" href="/news_vue/4">集計履歴<a/></li>
+                    <li class="nav-item pl-3"><a class="nav-link"　href="/news_vue/1">お気に入り別<a/></li>
+                    <li class="nav-item pl-3"><a class="nav-link"　href="/news_vue/2">ニュース一覧<a/></li>
+                    <li class="nav-item pl-3"><a class="nav-link"　href="/news_vue/4">集計履歴<a/></li>
                   </ul>
                 </nav>
+                <!-- <navmenu
+                        :news_disp=1
+                  ></navmenu> -->
                 <div class="card-body">
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
@@ -41,7 +44,7 @@
                           </a>
                           <p>
                           オススメ度
-                          <rating :rate='{{ $v->relativity }}'
+                          <rating
                                   :rate2='{{ $v->evaluation }}'
                                   :news_id='{{ $v->id }}'
                             ></rating>
